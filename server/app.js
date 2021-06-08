@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const create = require('./routers/create')
 const { getAll, getMyToken } = require('./routers/getTokens')
-var multer = require('multer')
+var multer = require('multer');
+const buyToken = require('./routers/buy');
 
 const app = express()
 const storage = multer.diskStorage({
@@ -88,6 +89,7 @@ app.get('/', (req, res) => {
 app.post('/api/create', upload.single('image') ,create)
 app.get('/api/get-all', getAll)
 app.post('/api/get-my-token', getMyToken)
+app.post('/api/buy-token', buyToken)
 
 // app.get('api/*', catch404)
 

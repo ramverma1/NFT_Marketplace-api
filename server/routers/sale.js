@@ -1,1 +1,0 @@
-const NFT = require('../../models/collectibles.model')
