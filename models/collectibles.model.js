@@ -18,7 +18,12 @@ let createCollectibles = new Schema({
     address: {
         type: String,
     },
-
+    token_id: {
+        type: Number,
+    },
+    price: {
+        type: Number,
+    }
 });
 
 module.exports = mongoose.model('W-NFT', createCollectibles);
