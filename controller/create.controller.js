@@ -2,7 +2,7 @@ const NFT = require('../models/collectibles.model')
 
 const create = async ( req, res ) => {
 
-    const { hash, name, description, address } = req.body;
+    const { hash, name, description, address, token_id, price } = req.body;
 
     const getnft = await getNFT(hash)
 
@@ -10,7 +10,7 @@ const create = async ( req, res ) => {
         res.send(existingNFT(hash))
         res.end()
     } else {
-        res.send(createNewNFT(hash, name, description, req.file.path, address))
+        res.send(createNewNFT(hash, name, description, req.file.path, address, token_id, price))
     }
 
 }
@@ -32,7 +32,7 @@ async function getNFT(_id) {
     })
 }
 
-const createNewNFT = ( _id, token_name, description, file, address ) => {
+const createNewNFT = ( _id, token_name, description, file, address, token_id, price ) => {
     return new Promise((resolve, reject) => {
         try {
             let nft = new NFT(
@@ -41,7 +41,9 @@ const createNewNFT = ( _id, token_name, description, file, address ) => {
                     token_name,
                     description,
                     image: file,
-                    address
+                    address,
+                    token_id,
+                    price
                 }
             );
         
